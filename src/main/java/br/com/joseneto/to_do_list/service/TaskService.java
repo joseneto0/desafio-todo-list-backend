@@ -2,13 +2,14 @@ package br.com.joseneto.to_do_list.service;
 
 import br.com.joseneto.to_do_list.domain.entity.Task;
 import br.com.joseneto.to_do_list.domain.repository.TaskRepository;
-import br.com.joseneto.to_do_list.service.comparator.TaskComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -21,8 +22,8 @@ public class TaskService {
         return task;
     }
 
-    public Task findTaskById(Long id) throws Exception {
-        return this.taskRepository.findById(id).orElseThrow(() -> new Exception("Task not found"));
+    public Optional<Task> findTaskById(Long id) throws Exception {
+        return this.taskRepository.findById(id);
     }
 
     public List<Task> findAllTasks() {
@@ -34,9 +35,8 @@ public class TaskService {
         return task;
     }
 
-    public HttpStatus deleteTask(Long id) throws Exception {
+    public void deleteTask(Long id) throws Exception {
         this.taskRepository.deleteById(id);
-        return HttpStatus.OK;
     }
 
     public List<Task> orderedByPriority(){
