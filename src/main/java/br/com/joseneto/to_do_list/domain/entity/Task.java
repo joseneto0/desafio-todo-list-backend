@@ -17,6 +17,6 @@ public class Task {
     private long id;
     private String name;
     private String description;
-    private boolean completed;
-    private Integer priority;
+    private boolean completed = false;
+    private Integer priority = 0;
 }
