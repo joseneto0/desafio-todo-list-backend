@@ -30,9 +30,9 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
-    @PutMapping("/update/{id}")
-    public Task updateTask(@PathVariable Long id, @RequestBody Task task) throws Exception {
-        return taskService.updateTask(id, task);
+    @PutMapping("/update")
+    public Task updateTask(@RequestBody Task task) throws Exception {
+        return taskService.updateTask(task);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -43,10 +43,5 @@ public class TaskController {
     @GetMapping("/ordered")
     public List<Task> orderedByPriority() {
         return taskService.orderedByPriority();
-    }
-
-    @GetMapping("/completed/{id}")
-    public Task completedTask(@PathVariable Long id) throws Exception {
-        return taskService.completeTask(id);
     }
 }
